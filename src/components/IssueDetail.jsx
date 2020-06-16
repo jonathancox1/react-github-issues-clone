@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CommentDetail from './CommentDetail';
 import './issues.css';
 import detailOpen from '../images/detailOpen.svg';
 import moment from 'moment';
@@ -70,6 +71,7 @@ export default class IssueDetail extends Component {
                                         </div>
                                     </div>
                                     <ReactMarkdown>{body}</ReactMarkdown>
+                                    <hr />
                                 </div>
                                 <div className="col-2">
                                     assignees
@@ -77,6 +79,7 @@ export default class IssueDetail extends Component {
                             </div>
                         </div>
                     </div>
+                    <CommentDetail num={number} />
                 </div>
             </div>
         )

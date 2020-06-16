@@ -1,42 +1,47 @@
-import React, { Component } from 'react'
-import { Router } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
 import Issue from './Issue'
 import './issues.css';
 
 
-export default class IssueList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            issues: []
-        }
-    }
+function IssueList() {
 
-    componentDidMount() {
+    // setState using Hooks in a functional Component
+    const [issues, setIssues] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // useEffect similar to componentDiDMount
+    useEffect(() => {
         try {
             fetch('https://api.github.com/repos/facebook/create-react-app/issues')
                 .then((results) => results.json())
-                .then(results => {
-                    this.setState({ issues: results })
+                .then(data => {
+                    setIssues(data ? data : [])
+                    setIsLoading(false)
                 })
         }
         catch (error) {
             console.log(error);
         }
-    }
+    })
 
-    render() {
-        return (
-            <div className="outerContainer mx-auto">
-                <div className="text-center mt-5" style={{ height: 100 }}>
-                    <h2>issues list</h2>
-                </div>
-                {this.state.issues.map((item) => {
-                    return (
-                        <Issue className="container" item={item} key={item.id}></Issue>
-                    )
-                })}
+    if (isLoading) {
+        return <h2>Loading...</h2>
+    };
+
+    return (
+        <div className="outerContainer mx-auto">
+            <div className="text-center mt-5" style={{ height: 100 }}>
+                <h2>issues list</h2>
             </div>
-        )
-    }
+            {issues.map((item) => {
+                return (
+                    <Issue className="container" item={item} key={item.id}></Issue>
+                )
+            })}
+        </div>
+    )
 }
+
+
+
+export default IssueList;

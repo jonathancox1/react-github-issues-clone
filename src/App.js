@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import IssueList from './components/IssueList'
 import IssueDetail from './components/IssueDetail'
+import User from './components/User'
 import './components/issues.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -14,6 +15,7 @@ function App() {
         <div className="col">
           <Switch>
             <Route exact path="/" component={IssueList} />
+            <Route exact path="/user" component={User} />
             <Route exact path="/issue/:issueNumber" component={IssueDetail} />
             <Route>
               <h1 className="text-center">Error: Something's Gone Wrong</h1>
@@ -22,7 +24,6 @@ function App() {
         </div>
       </div>
     </Router>
-
   );
 }
 
