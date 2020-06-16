@@ -4,8 +4,8 @@ export default function UserCard({ item }) {
     return (
         <div>
             <div className="card mx-auto" style={{ width: '250px' }}>
-                <div className="card-img-top mx-auto">
-                    <img src={item.avatar_url} alt="avatar"></img>
+                <div className="card-img-top">
+                    <img src={item.avatar_url} alt="avatar" className="mx-auto"></img>
                 </div>
                 <div className="card-title mx-auto">{item.name}</div>
                 <div className="card-body">
