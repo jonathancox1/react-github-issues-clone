@@ -7,13 +7,14 @@ export default function UserCardList({ users }) {
 
 
     return (
-        <div>
-            UserCardList
-            {users.map((item) => {
-                return (
-                    <UserCard item={item}></UserCard>
-                )
-            })}
-        </div>
+        <>
+            <div className="row mx-auto mt-5">
+                {users.map((item, index) => {
+                    return (
+                        <UserCard key={index} item={item}></UserCard>
+                    )
+                })}
+            </div>
+        </>
     )
 }

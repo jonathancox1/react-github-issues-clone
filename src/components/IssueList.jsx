@@ -22,7 +22,7 @@ function IssueList() {
         catch (error) {
             console.log(error);
         }
-    })
+    }, [])
 
     if (isLoading) {
         return <h2>Loading...</h2>

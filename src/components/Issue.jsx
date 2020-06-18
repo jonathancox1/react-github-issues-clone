@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './issues.css';
 import iconOpen from '../images/checkOpen.svg'
 import iconClosed from '../images/checkClosed.svg'
@@ -27,7 +28,7 @@ export default function Issue({ item }) {
                         })}
                         <br />
                         <small>#{item.id} opened {moment(item.created_at).fromNow()} by&nbsp;
-                            <a href={item.user.url}>{item.user.login}</a>
+                            <Link to={`/user/userDetail/${item.user.login}`}>{item.user.login}</Link>
                         </small>
                     </div>
                 </div>

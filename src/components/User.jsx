@@ -24,23 +24,33 @@ export default class User extends Component {
             fetch(`https://api.github.com/users/${this.state.userName}`)
                 .then(res => res.json())
                 .then(data => {
-                    this.setState({ userList: [...this.state.userList, data] })
+                    this.setState({ userList: [...this.state.userList, data], userName: '' })
                     console.log(this.state);
                 })
         } catch (err) {
             console.log(err);
         }
-        this.setState({ userName: '' })
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange} value={this.state.userName} placeholder="enter username"></input>
-                    <button type="submit">Submit</button>
-                </form>
-                <UserCardList users={this.state.userList} />
+            <div className="row">
+                <div className="col outerContainer">
+                    <div className="container">
+                        <div className="row my-auto form-group">
+                            <form onSubmit={this.handleSubmit} className="mx-auto">
+                                <label for="username"></label>
+                                <input name="username" className="form-control" onChange={this.handleChange} value={this.state.userName} placeholder="enter username"></input>
+                                <button className="btn btn-sm btn-outline-secondary form-control" type="submit">Submit</button>
+                            </form>
+                        </div>
+                        {this.state.userList.length > 0 &&
+                            <div className="row mx-auto border">
+                                <UserCardList users={this.state.userList} />
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         )
     }
